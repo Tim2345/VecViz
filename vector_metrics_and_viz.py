@@ -47,15 +47,17 @@ class VecViz:
         return self.vec_matrix[indices]
 
     def get_cosine_distances(self, tokens_x, tokens_y, out=dict):
-        if not any(isinstance(tokens_x, list), isinstance(tokens_y, list)):
+        if not any((isinstance(tokens_x, list), isinstance(tokens_y, list))):
             raise ValueError("Both tokens_x and 'tokens_y' must be 'list' type.")
 
         output = []
         for tx in tokens_x:
+            print(tx)
             for ty in tokens_y:
-                words = tx + '_' + ty
-                cos_dist_temp = distance.cosine(self.get_vectors(wx), self.get_vectors(wy))
-                output.append((words, cos_dist_temp))
+                print(ty)
+                tokens = tx + '_' + ty
+                cos_dist_temp = distance.cosine(self.get_vectors([tx]).reshape(1,-1), self.get_vectors([ty]).reshape(1,-1))
+                output.append((tokens, cos_dist_temp))
 
         output = out(output)
 
