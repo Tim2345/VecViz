@@ -30,3 +30,10 @@ vec_viz.vec_scatterplot(
 )
 
 
+from scipy.spatial import distance
+
+target_vec = vec_viz.get_vectors(['man'])[0]
+
+[distance.cosine(target_vec, vec) for vec in vec_viz.vec_matrix]
+
+
